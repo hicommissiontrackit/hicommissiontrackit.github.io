@@ -1,14 +1,20 @@
 // Initialize Firebase(2)
-var config = {
-    apiKey: 'YOUR-API-KEY',
-    authDomain: 'YOUR-AUTH-DOMAIN',
-    databaseURL: 'YOUR-DATABASE-URL',
-    projectId: 'YOUR-PROJECT-ID',
-    storageBucket: 'YOUR-STORE-BUCKET',
-    messagingSenderId: 'YOUR-MESSAGING-SENDER-ID'
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCJOR2n0Ee_SQVqcKaDhAY89W-Y64aNX3c",
+    authDomain: "trackit-8e67f.firebaseapp.com",
+    databaseURL: "https://trackit-8e67f.firebaseio.com",
+    projectId: "trackit-8e67f",
+    storageBucket: "trackit-8e67f.appspot.com",
+    messagingSenderId: "591240291201",
+    appId: "1:591240291201:web:66bc033a1f39838eee7e80",
+    measurementId: "G-P4FRGE2W7V"
   };
-  firebase.initializeApp(config);
-  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
   //Reference for form collection(3)
   let formMessage = firebase.database().ref('register');
   
