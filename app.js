@@ -13,7 +13,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  //firebase.analytics();
 
   //Reference for form collection(3)
   let formMessage = firebase.database().ref('register');
