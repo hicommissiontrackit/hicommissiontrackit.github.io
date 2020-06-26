@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>ZingGrid: Blank Grid</title>
   <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+  <script src="/moment.js"></script>
   <style>
     body {
       background: #e6e6e6;
@@ -22,15 +23,9 @@
   <img src="/favicon.ico"/>
   <script>
   
-  function GetFormattedDate() {
-    var todayTime = new Date();
-    var month = format(todayTime .getMonth() + 1);
-    var day = format(todayTime .getDate());
-    var year = format(todayTime .getFullYear());
-    return month + "/" + day + "/" + year;
-  }
-  var defString = GetFormattedDate();
-  
+
+  var defString = moment().format('llll');
+
   var deString = new Date();
   var d1 = new Date(deString);
   var d2 = new Date();
