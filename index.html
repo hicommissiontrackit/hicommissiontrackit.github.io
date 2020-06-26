@@ -58,8 +58,8 @@
   const diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay));
   
   console.log(diffDays);
-
-  if (Date.parse(secondDate) >= Date.parse(firstDate)) {
+                //end date                //start date  
+  if (Date.parse(secondDate) < Date.parse(firstDate)) {
     console.log('The ending date ' + secondDate + ' must occur after the starting date. ' + firstDate)
   }
 
