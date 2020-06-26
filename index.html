@@ -23,8 +23,9 @@
   <script>
   // that row. Else return decreased
   function _renderOpenValue(openValue, cellDOMRef, cellRef) {
-     if (openValue > cellRef.record.close) return 'increased'; 
-    
+     //if (openValue > cellRef.record.close) return 'increased'; 
+     if (cellRef.record.endate > cellRef.record.startdate) return 'increased'; 
+
     return 'decreased';
   }
 </script>
