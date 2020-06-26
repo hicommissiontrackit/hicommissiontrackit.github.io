@@ -25,6 +25,7 @@
   function _renderOpenValue(openValue, cellDOMRef, cellRef) {
      if (cellRef.record.enddate > cellRef.record.startdate) 
      {
+       //<div data-field-index="enddate">6-25-2020</div>
         return 'increased';
      }else if (cellRef.record.enddate == cellRef.record.startdate) {
         return 'highlight'; 
@@ -37,7 +38,15 @@
 
 <body>
 
-  <zing-grid src="https://tribeofjudah-9c61f.firebaseio.com/jude" caption="HiCommission CRUD Endpoint" editor-controls="all" pager="" page-size="5" layout="row" role="grid" editor="inline" viewport="tablet-portrait" adapter="firebase cell-class="_renderOpenValue"></zing-grid>>
+  <zing-grid src="https://tribeofjudah-9c61f.firebaseio.com/jude" caption="HiCommission CRUD Endpoint" editor-controls="all" pager="" page-size="5" layout="row" role="grid" editor="inline" viewport="tablet-portrait" adapter="firebase>
+    <zg-colgroup>
+      <zg-column index="enddate" type="currency" cell-class="_renderOpenValue"></zg-column>
+      <zg-column index="fieldname" type="currency"  ></zg-column>
+      <zg-column index="startdate" type="currency" ></zg-column>
+      <zg-column index="text" type="currency"></zg-column>
+      <zg-column index="volume"></zg-column>
+    </zg-colgroup>
+  </zing-grid>>
 
 
 </body>
