@@ -52,14 +52,13 @@
 
      //if (dsString > dsString) 
     //if(dsString > cellRef.record.startdate)
-    if(somfutureDate < somDate)
+    if(somfutureDate > somDate)
      {
-       //<div data-field-index="enddate">6-25-2020</div>
-        return 'increased';
+        return 'decreased';
      }else if (cellRef.record.enddate == cellRef.record.startdate) {
         return 'highlight'; 
      } else {
-        return 'decreased';
+        return 'increased';
      }   
   }
 </script>
