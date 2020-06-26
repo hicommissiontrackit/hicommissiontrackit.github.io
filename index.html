@@ -14,11 +14,20 @@
       height: 548px;
     }
   </style>
+  <img src="/favicon.ico"/>
+  <script>
+  // that row. Else return decreased
+  function _renderOpenValue(openValue, cellDOMRef, cellRef) {
+     if (openValue > cellRef.record.close) return 'increased'; 
+    
+    return 'decreased';
+  }
+</script>
 </head>
 
 <body>
 
-  <zing-grid src="https://tribeofjudah-9c61f.firebaseio.com/jude" caption="HiCommission CRUD Endpoint" editor-controls="all" pager="" page-size="5" layout="row" role="grid" editor="inline" viewport="tablet-portrait">
+  <zing-grid src="https://tribeofjudah-9c61f.firebaseio.com/jude" caption="HiCommission CRUD Endpoint" editor-controls="all" pager="" page-size="5" layout="row" role="grid" editor="inline" viewport="tablet-portrait" cell-class="_renderOpenValue"></zing-grid>>
   </zing-grid>
 
   <script></script>
