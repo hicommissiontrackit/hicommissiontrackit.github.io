@@ -43,7 +43,7 @@
 
   var deString = new Date();
  
-  var numdays = DateDiff.inDays(d1, d2);
+  //var numdays = DateDiff.inDays(d1, d2);
 
   // that row. Else return decreased
   function _renderOpenValue(openValue, cellDOMRef, cellRef) {
@@ -55,7 +55,7 @@
     const firstDate = new Date(cellRef.record.startdate);
     const secondDate = new Date(cellRef.record.enddate);
 
-  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+  const diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay));
   
   console.log(diffDays);
 
