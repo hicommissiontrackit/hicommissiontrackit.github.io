@@ -26,9 +26,12 @@
 
   var defString = moment().format('llll');
   var defString1 = moment().add(30, 'days').calendar();
-  var somDate = new Date(defString1);
+  var defString = moment().subtract(53, 'days').calendar();
+  var somfutureDate = new Date(defString1);
   console.log(somDate);
-  
+  var somDate = new Date(defString);
+  console.log(somDate);
+
   var deString = new Date();
   var d1 = new Date(deString);
   var d2 = new Date();
