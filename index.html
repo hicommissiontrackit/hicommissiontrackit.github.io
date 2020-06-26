@@ -66,13 +66,13 @@
   
   console.log(diffDays);
 
-    if(somfutureDate > somDate)
+    if(diffDays > 30)
      {
-        return 'decreased';
+        return 'increased';
      }else if (cellRef.record.enddate == cellRef.record.startdate) {
         return 'highlight'; 
      } else {
-        return 'increased';
+        return 'decreased';
      }   
   }
 </script>
