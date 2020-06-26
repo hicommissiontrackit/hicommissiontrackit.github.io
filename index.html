@@ -58,6 +58,7 @@
   const diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay));
   
   console.log(diffDays);
+  //TODO textfield validation https://stackoverflow.com/questions/36494921/how-validation-date-to-not-less-than-the-start-date-in-textbox-using-javascript
                 //end date                //start date  
   if (Date.parse(secondDate) < Date.parse(firstDate)) {
     console.log('The ending date ' + secondDate + ' must occur after the starting date. ' + firstDate)
@@ -92,9 +93,9 @@ CheckSchedulingDates();
 
   <zing-grid src="https://tribeofjudah-9c61f.firebaseio.com/jude" caption="HiCommission CRUD Endpoint" editor-controls="all" pager="" page-size="5" layout="row" role="grid" editor="inline" viewport="tablet-portrait" adapter="firebase" >
     <zg-colgroup>
-      <zg-column index="enddate" type="currency" cell-class="_renderOpenValue"></zg-column>
-      <zg-column index="fieldname" type="currency"  ></zg-column>
-      <zg-column index="startdate" type="currency" ></zg-column>
+      <zg-column index="enddate" type="date" cell-class="_renderOpenValue"></zg-column>
+      <zg-column index="fieldname" type="currency" ></zg-column>
+      <zg-column index="startdate" type="date" ></zg-column>
       <zg-column index="text" type="currency"></zg-column>
       <zg-column index="volume"></zg-column>
     </zg-colgroup>
