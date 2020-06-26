@@ -29,6 +29,14 @@
   //var defString = moment().subtract(53, 'days').calendar();
   var somfutureDate = new Date(defString1);
 
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  const firstDate = new Date(2008, 1, 12);
+  const secondDate = new Date(2008, 1, 22);
+
+  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+
+  console.log(diffDays);
+  
   var somDate = new Date(defString);
   console.log(somDate);
 
@@ -49,16 +57,13 @@
     var deString = cellRef.record.enddate; 
     var dsString = cellRef.record.enddate;  
     var dtestStr = "May, 20, 1984";
-    
+
     const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-    const firstDate = cellRef.record.startdate;
-    const secondDate = cellRef.record.enddate;
+    const firstDate = new Date(cellRef.record.startdate);
+    const secondDate = new Date(cellRef.record.enddate);
 
   const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-
-  console.log(diffDays);
-     //if (dsString > dsString) 
-    //if(dsString > cellRef.record.startdate)
+  
     if(somfutureDate > somDate)
      {
         return 'decreased';
