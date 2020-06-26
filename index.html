@@ -14,9 +14,9 @@
     zing-grid[loading] {
       height: 548px;
     }
-.increased { color:#66bb6a; }
+.increased { color:#ef5350; }
 .increased::before { content:'↑'; }
-.decreased { color:#ef5350; }
+.decreased { color:#66bb6a; }
 .decreased::before { content:'↓'; }
 .highlight { background:#fff59d ; }
   </style>
@@ -28,7 +28,7 @@
   var defString1 = moment().add(30, 'days').calendar();
   //var defString = moment().subtract(53, 'days').calendar();
   var somfutureDate = new Date(defString1);
-
+/*
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   const firstDate = new Date(2008, 1, 12);
   const secondDate = new Date(2008, 1, 22);
@@ -36,20 +36,13 @@
   const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
 
   console.log(diffDays);
-  
+  */
+
   var somDate = new Date(defString);
   console.log(somDate);
 
   var deString = new Date();
-  var d1 = new Date(defString);
-  var d2 = new Date();
-
-  var DateDiff= {
-    inDays: function(d1, d2){
-    var t2 = d2.getTime();
-    var t1 = d1.getTime();
-    }
-  }  
+ 
   var numdays = DateDiff.inDays(d1, d2);
 
   // that row. Else return decreased
