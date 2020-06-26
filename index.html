@@ -39,7 +39,8 @@
     var deString = cellRef.record.enddate; 
     var dsString = cellRef.record.enddate;  
 
-     if (dsString > dsString) 
+     //if (dsString > dsString) 
+    if(dsString > cellRef.record.startdate)
      {
        //<div data-field-index="enddate">6-25-2020</div>
         return 'increased';
