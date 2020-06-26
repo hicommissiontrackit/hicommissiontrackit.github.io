@@ -23,16 +23,14 @@
   <script>
   // that row. Else return decreased
   function _renderOpenValue(openValue, cellDOMRef, cellRef) {
-     //if (openValue > cellRef.record.close) return 'increased'; 
      if (cellRef.record.enddate > cellRef.record.startdate) 
      {
-       return 'increased';
+        return 'increased';
      }else if (cellRef.record.enddate == cellRef.record.startdate) {
         return 'highlight'; 
      } else {
-      return 'decreased';
-     }
-    
+        return 'decreased';
+     }   
   }
 </script>
 </head>
@@ -40,13 +38,13 @@
 <body>
 
   <zing-grid src="https://tribeofjudah-9c61f.firebaseio.com/jude" caption="HiCommission CRUD Endpoint" editor-controls="all" pager="" page-size="5" layout="row" role="grid" editor="inline" viewport="tablet-portrait" cell-class="_renderOpenValue"></zing-grid>>
-  <zg-colgroup>
+  <!--zg-colgroup>
     <zg-column index="open" type="currency" cell-class="_renderStocks"></zg-column>
     <zg-column index="high" type="currency"  cell-class="_highlightHigh"></zg-column>
     <zg-column index="low" type="currency" cell-class="_highlightLow"></zg-column>
     <zg-column index="close" type="currency"></zg-column>
     <zg-column index="volume"></zg-column>
-  </zg-colgroup>  
+  </zg-colgroup-->  
 </zing-grid>
 
   <script></script>
