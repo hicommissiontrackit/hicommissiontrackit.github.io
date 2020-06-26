@@ -59,6 +59,10 @@
   
   console.log(diffDays);
 
+  if (Date.parse(secondDate) >= Date.parse(firstDate)) {
+    console.log('The ending date must occur after the starting date.')
+  }
+
     if(diffDays > 30)
      {
         return 'increased';
@@ -69,6 +73,7 @@
      }   
   }
 
+/*
   function CheckSchedulingDates() {
   //var SD = document.getElementById('startdate').value;
   //var ED = document.getElementById('enddate').value;
@@ -79,7 +84,7 @@
 }
 
 CheckSchedulingDates();
-
+*/
 </script>
 </head>
 
