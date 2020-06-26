@@ -33,7 +33,14 @@
 <body>
 
   <zing-grid src="https://tribeofjudah-9c61f.firebaseio.com/jude" caption="HiCommission CRUD Endpoint" editor-controls="all" pager="" page-size="5" layout="row" role="grid" editor="inline" viewport="tablet-portrait" cell-class="_renderOpenValue"></zing-grid>>
-  </zing-grid>
+  <zg-colgroup>
+    <zg-column index="open" type="currency" cell-class="_renderStocks"></zg-column>
+    <zg-column index="high" type="currency"  cell-class="_highlightHigh"></zg-column>
+    <zg-column index="low" type="currency" cell-class="_highlightLow"></zg-column>
+    <zg-column index="close" type="currency"></zg-column>
+    <zg-column index="volume"></zg-column>
+  </zg-colgroup>  
+</zing-grid>
 
   <script></script>
 </body>
