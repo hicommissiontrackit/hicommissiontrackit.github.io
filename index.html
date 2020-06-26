@@ -21,9 +21,24 @@
   </style>
   <img src="/favicon.ico"/>
   <script>
+  
+  var d1 = new Date(deString);
+  var d2 = new Date();
+
+  var DateDiff= {
+    inDays: function(d1, d2){
+    var t2 = d2.getTime();
+    var t1 = d1.getTime();
+    }
+  }  
+  var numdays = DateDiff.inDays(d1, d2);
+
   // that row. Else return decreased
   function _renderOpenValue(openValue, cellDOMRef, cellRef) {
-     if (cellRef.record.enddate > cellRef.record.startdate) 
+    var deString = cellRef.record.enddate; 
+    var dsString = cellRef.record.enddate;  
+
+     if (dString > dsString) 
      {
        //<div data-field-index="enddate">6-25-2020</div>
         return 'increased';
