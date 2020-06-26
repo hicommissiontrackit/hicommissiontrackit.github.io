@@ -68,6 +68,18 @@
         return 'decreased';
      }   
   }
+
+  function CheckSchedulingDates() {
+  //var SD = document.getElementById('startdate').value;
+  //var ED = document.getElementById('enddate').value;
+  if (Date.parse(secondDate) >= Date.parse(firstDate)) {
+    console.log('The ending date must occur after the starting date.')
+    //return 'The ending date must occur after the starting date.'    
+  }
+}
+
+CheckSchedulingDates();
+
 </script>
 </head>
 
