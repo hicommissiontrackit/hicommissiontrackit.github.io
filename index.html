@@ -60,32 +60,17 @@
   console.log(diffDays);
   //TODO textfield validation https://stackoverflow.com/questions/36494921/how-validation-date-to-not-less-than-the-start-date-in-textbox-using-javascript
                 //end date                //start date  
-  if (Date.parse(secondDate) < Date.parse(firstDate)) {
-    console.log('The ending date ' + secondDate + ' must occur after the starting date. ' + firstDate)
+  if (Date.parse(secondDate) > Date.parse(firstDate)) {
+    console.log('The ending date ' + secondDate + ' is O.K. It occurs after the starting date. ' + firstDate)
+    return 'decreased';
+  }else if(Date.parse(secondDate) == Date.parse(firstDate)){
+    return 'highlight';
+  }else{
+    console.log('The ending date ' + secondDate + ' must occur after the starting date. ' + firstDate);
+    return 'increased';
   }
+ }
 
-    if(diffDays > 30)
-     {
-        return 'increased';
-     }else if (cellRef.record.enddate == cellRef.record.startdate) {
-        return 'highlight'; 
-     } else {
-        return 'decreased';
-     }   
-  }
-
-/*
-  function CheckSchedulingDates() {
-  //var SD = document.getElementById('startdate').value;
-  //var ED = document.getElementById('enddate').value;
-  if (Date.parse(secondDate) >= Date.parse(firstDate)) {
-    console.log('The ending date must occur after the starting date.')
-    //return 'The ending date must occur after the starting date.'    
-  }
-}
-
-CheckSchedulingDates();
-*/
 </script>
 </head>
 
