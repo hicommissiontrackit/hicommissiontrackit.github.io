@@ -3,80 +3,45 @@
 
 <head>
   <meta charset="utf-8">
-  <title>ZingGrid: Blank Grid</title>
+  <title>ZingGrid Demo</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
   <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
-  <script src="moment.js"></script>
   <style>
+    html,
     body {
-      background: #e6e6e6;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .caption-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: baseline;
     }
 
     zing-grid[loading] {
-      height: 548px;
+      height: 168px;
     }
-.increased { color:#ef5350; }
-.increased::before { content:'↑'; }
-.decreased { color:#66bb6a; }
-.decreased::before { content:'↓'; }
-.highlight { background:#fff59d ; }
   </style>
-  <img src="favicon.ico"/>
-  <script>
-  
-
-  var defString = moment().format('LL');
-  var defString1 = moment().add(30, 'days').calendar();
-  //var defString = moment().subtract(53, 'days').calendar();
-  var somfutureDate = new Date(defString1);
-/*
-  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  const firstDate = new Date(2008, 1, 12);
-  const secondDate = new Date(2008, 1, 22);
-
-  const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-
-  console.log(diffDays);
-  */
-
-  var somDate = new Date(defString);
-  console.log(somDate);
-
-  var deString = new Date();
- 
-  //var numdays = DateDiff.inDays(d1, d2);
-
-  // that row. Else return decreased
-  function _renderOpenValue(openValue, cellDOMRef, cellRef) {
-    var deString = cellRef.record.enddate; 
-    var dsString = cellRef.record.enddate;  
-    var dtestStr = "May, 20, 1984";
-
-    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-    const firstDate = new Date(cellRef.record.startdate);
-    const secondDate = new Date(cellRef.record.enddate);
-
-  const diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay));
-  
-  console.log(diffDays);
-  //TODO textfield validation https://stackoverflow.com/questions/36494921/how-validation-date-to-not-less-than-the-start-date-in-textbox-using-javascript
-                //end date                //start date  
-  if (Date.parse(secondDate) > Date.parse(firstDate)) {
-    console.log('The ending date ' + secondDate + ' is O.K. It occurs after the starting date. ' + firstDate)
-    return 'decreased';
-  }else if(Date.parse(secondDate) == Date.parse(firstDate)){
-    return 'highlight';
-  }else{
-    console.log('The ending date ' + secondDate + ' must occur after the starting date. ' + firstDate);
-    return 'increased';
-  }
- }
-
-</script>
 </head>
 
 <body>
+  <h1>Lets Connect a Grid to a CSV on the Client</h1>
+  <p>In this example we will use the <a href="https://tribeofjudah-9c61f.firebaseio.com/jude">papaparse</a> library.</p>
+  <p>You can click the following button to export the data back to csv and save it.</p>
+  <button onClick="_exportDataToCSV()">Export To CSV</button>
+  <p>You can also highlight (drag and select) the grid cells and export that selection to a CSV via the context menu (right click menu.)</p>
 
-  <zing-grid src="https://tribeofjudah-9c61f.firebaseio.com/jude" caption="HiCommission CRUD Endpoint" editor-controls="all" pager="" page-size="5" layout="row" role="grid" editor="inline" viewport="tablet-portrait" adapter="firebase" filter viewport-stop>
+  <zing-grid pager page-size=15 selector sort context-menu="customMenu" editor>
+    <zg-caption>
+      <div class="caption-container">
+        <h2>CSV Export Demo Title</h2>
+        <button onClick="_exportDataToCSV()">Export To CSV</button>
+      </div>
+    </zg-caption>
     <zg-colgroup>
       <zg-column index="enddate" type="date" cell-class="_renderOpenValue"></zg-column>
       <zg-column index="fieldname" type="currency" ></zg-column>
@@ -84,9 +49,92 @@
       <zg-column index="text" type="string"></zg-column>
       <zg-column index="volume"></zg-column>
     </zg-colgroup>
-  </zing-grid>>
+    <zg-menu id="customMenu">
+      <zg-menu-item role="exportSelection">Export Selection</zg-menu-item>
+    </zg-menu>
+  </zing-grid>
+
+  <!-- empty anchor tag for downloading -->
+  <a href="" id="downloadAnchor">&nbsp;</a>
+
+  <!-- other script tags at the bottom of the page -->
+
+  <script>
+    // function for exporting csv
+    function _exportDataToCSV() {
+      const data = zgRef.getData();
+      const csvData = Papa.unparse(data);
+      console.log('--- exporting data ----', data, csvData);
+      _downloadCSV('export-all.csv', csvData);
+    }
 
 
+    // use built in anchor tag functionality to download the csv through a blob
+    function _downloadCSV(fileName, data) {
+      const aRef = document.querySelector('#downloadAnchor');
+      let json = JSON.stringify(data),
+        blob = new Blob([data], {
+          type: "octet/stream"
+        }),
+        url = window.URL.createObjectURL(blob);
+      aRef.href = url;
+      aRef.download = fileName;
+      aRef.click();
+      window.URL.revokeObjectURL(url);
+    }
+
+    // Javascript code to execute after DOM content
+    const menuItem = document.querySelector('zg-menu-item[role="exportSelection"]');
+    // global reference to zing-grid on page
+    const zgRef = document.querySelector('zing-grid');
+    let data = [];
+    let dataKeys = [];
+
+
+    // register event listener for grid selection
+    let csvData = null;
+    zgRef.addEventListener('grid:select', function(e) {
+      const data = e.detail.ZGData.data;
+      csvData = Papa.unparse(data);
+      console.log('--- exporting selected data ----', data, csvData);
+    });
+
+    menuItem.addEventListener('click', function(e) {
+      console.log('--- native menuitem click ---', e);
+      if (csvData) _downloadCSV('selection.csv', csvData);
+      else alert('No cells selected. Please drag and select some cells to export.')
+    });
+
+    window.addEventListener('load', () => {
+      // Parse local CSV file
+      Papa.parse('https://console.firebase.google.com/project/tribeofjudah-9c61f/database/data/jude', {
+        download: true, // url to retrieve CSV file
+        complete: function(results) {
+          console.log("Finished:", results);
+
+          // if results came in correctly
+          if (results && results.data) {
+
+            // lets push the results into our new array
+            // new format
+            for (let i = 1; i < results.data.length; i++) {
+              data.push(results.data[i]);
+              // render first page now
+              if (i === 15) zgRef.setData(data);
+            }
+
+            // render rest of data after first page
+            setTimeout(function() {
+              zgRef.setData(data)
+            }, 500);
+          }
+
+          // we could also just delete the first index
+          // which contains the header information
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
